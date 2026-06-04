@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl =  '/api/notes'
+const baseUrl =  'https://phonebook-fullstack-rhu4.onrender.com/api/persons'
 
 const getAll = () => {
   const request = axios.get(baseUrl)
