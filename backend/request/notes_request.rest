@@ -9,3 +9,16 @@ content-type: application/json
     "name": "sample",
     "time": "Wed, 21 Oct 2015 18:27:50 GMT"
 }
+
+###
+
+POST http://localhost:3001/api/persons
+content-type: application/json
+
+{
+     "name": "khushi",
+  "number": "040-123456"
+}
+
+###
+GET http://localhost:3001/api/persons

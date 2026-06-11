@@ -1,4 +1,9 @@
+
+
 const mongoose = require('mongoose')
+
+const { setServers } = require('node:dns/promises');
+setServers(['8.8.8.8', '1.1.1.1']);
 
 if (process.argv.length < 3) {
   console.log('give password as argument')
@@ -7,28 +12,33 @@ if (process.argv.length < 3) {
 
 const password = process.argv[2]
 
-const url = `mongodb+srv://khushi3050:<Alwar%2369>@cluster0.n0fbi7c.mongodb.net/?appName=Cluster0`
+const url = `mongodb+srv://khushi3050:Alwar%2369@cluster0.n0fbi7c.mongodb.net/?appName=Cluster0`
 
-mongoose.set('strictQuery',false)
+mongoose.set('strictQuery', false)
 
-mongoose.connect(url, { family: 4 })
+mongoose.connect(url, { family: 4 }) 
 
-const noteSchema = new mongoose.Schema({
-               "id": "1",
-      "name": "Arto Hellas",
-      "number": "040-123456"
+const personSchema = new mongoose.Schema({
+  name: String,
+  number: String,
 })
 
-const person = mongoose.model('person', noteSchema)
+const Person = mongoose.model('Person', personSchema)
 
-const person = new Note({
-       "id": "1",
-      "name": "Arto Hellas",
-      "number": "040-123456"
-  
+const person = new Person({
+  name: 'Ada lovelace',
+  number: '040-123456',
 })
 
-note.save().then(result => {
-  console.log('note saved!')
+// person.save().then(result => {
+//   console.log('person saved!')
+//   mongoose.connection.close()
+// })
+
+Person.find({}).then(result => {
+  result.forEach(person => {
+    console.log(person)
+  })
   mongoose.connection.close()
 })
+
